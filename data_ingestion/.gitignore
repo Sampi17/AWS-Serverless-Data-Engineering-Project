@@ -1,5 +1,4 @@
 # .gitignore
 .env
 kaggle.json
-*.csv
 venv 
