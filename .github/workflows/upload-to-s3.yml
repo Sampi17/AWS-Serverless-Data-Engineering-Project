@@ -21,7 +21,7 @@ jobs:
         run: pip install -r data_ingestion/requirements.txt
 
       - name: Upload new CSVs to S3
-        run: python scripts/upload_to_s3.py
+        run: python Scripts/upload_to_s3.py
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
