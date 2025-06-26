@@ -3,7 +3,7 @@ import boto3
 
 # Configuration
 BUCKET_NAME = "my-data-lake-17 " 
-DATA_DIR = "data"
+DATA_DIR = "data_ingestion/data"
 S3_PREFIX = "raw/"  # prefix in S3 bucket
 
 # Initialize S3 client (uses credentials from env vars)
