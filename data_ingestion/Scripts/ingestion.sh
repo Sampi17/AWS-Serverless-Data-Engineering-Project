@@ -27,10 +27,16 @@ file_name="yellow_tripdata_${year}-${month}.csv"
 echo "➡️  Downloading $file_name..."
 
 # 4. Download from Kaggle
+# Download the specific file
 kaggle datasets download -d elemento/nyc-yellow-taxi-trip-data \
-
   -f "$file_name" \
-  -p data/ --unzip
+  -p data/
+  
+zip_file="data/${file_name}.zip" 
+
+# Unzip csv file
+
+unzip -o "$zip_file" 
 
 if [ $? -ne 0 ]; then
   echo "❌ Download failed. File may not exist or Kaggle auth issue."
@@ -38,12 +44,12 @@ if [ $? -ne 0 ]; then
 fi
 
 # 5. Git commit and push to trigger CI/CD
-#git add "data/$file_name"
-#git commit -m "Add $file_name"
-#git push origin main
+git add "data/$file_name"
+git commit -m "Add $file_name"
+git push -u origin master
 
-# 6. Increment month
-#next_month=$(date -d "$current_month-01 +1 month" +"%Y-%m")
-#echo "$next_month" > "$MARKER_FILE"
+6. Increment month
+next_month=$(date -d "$current_month-01 +1 month" +"%Y-%m")
+echo "$next_month" > "$MARKER_FILE"
 
 #echo "✅ Done. Next run will fetch $next_month"
