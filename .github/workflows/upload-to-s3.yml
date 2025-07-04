@@ -3,7 +3,7 @@ name: Upload New CSVs to S3
 on:
   push:
     paths:
-      - 'data_ingestion/**/*.csv'
+      - 'data_ingestion/**/*.txt'
 
 jobs:
   upload:
