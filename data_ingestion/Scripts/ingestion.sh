@@ -38,4 +38,4 @@ git add $MARKER_FILE
 echo "adding $MARKER_FILE to git staging area"
 git commit -m "downloaded dataset and triggering CI/CD to move the csv file to s3 bucket"
 echo "committed changes"
-git push -u origin master
+git push -u origin master 
