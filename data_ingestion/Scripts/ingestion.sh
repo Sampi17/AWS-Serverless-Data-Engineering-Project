@@ -32,7 +32,8 @@ kaggle datasets download -d elemento/nyc-yellow-taxi-trip-data \
   -p dataset/ 
 downloaded_file="dataset/$file_name"
 
-
 unzip $downloaded_file -d data/
 
-rm $download_file
+git add data/$file_name 
+git commit -m "downloaded dataset and triggering CI/CD to move the csv file to s3 bucket"
+git push -u origin master
