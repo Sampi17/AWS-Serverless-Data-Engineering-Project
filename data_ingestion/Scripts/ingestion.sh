@@ -9,7 +9,7 @@ cd ~/aws_projects/aws_data_engineering_p1/data_ingestion
 mkdir -p data
 
 # 1. Read current month marker
-MARKER_FILE="data/.current_month"
+MARKER_FILE="data/current_month"
 
 # If marker doesn't exist, start at Jan 2016
 if [ ! -f "$MARKER_FILE" ]; then
