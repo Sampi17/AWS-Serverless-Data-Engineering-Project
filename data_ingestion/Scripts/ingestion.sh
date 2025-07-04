@@ -21,35 +21,18 @@ current_month=$(cat "$MARKER_FILE")
 year=$(echo "$current_month" | cut -d '-' -f 1)
 month=$(echo "$current_month" | cut -d '-' -f 2)
 
-# 3. Build file name
+# File name to request from Kaggle
 file_name="yellow_tripdata_${year}-${month}.csv"
 
-echo "➡️  Downloading $file_name..."
+echo "➡️  Downloading $file_name as ZIP..."
 
-# 4. Download from Kaggle
-# Download the specific file
+# Download as zip into data/
 kaggle datasets download -d elemento/nyc-yellow-taxi-trip-data \
   -f "$file_name" \
-  -p data/
-  
-zip_file="data/${file_name}.zip" 
+  -p dataset/ 
+downloaded_file="dataset/$file_name"
 
-# Unzip csv file
 
-unzip -o "$zip_file" 
+unzip $downloaded_file -d data/
 
-if [ $? -ne 0 ]; then
-  echo "❌ Download failed. File may not exist or Kaggle auth issue."
-  exit 1
-fi
-
-# 5. Git commit and push to trigger CI/CD
-git add "data/$file_name"
-git commit -m "Add $file_name"
-git push -u origin master
-
-6. Increment month
-next_month=$(date -d "$current_month-01 +1 month" +"%Y-%m")
-echo "$next_month" > "$MARKER_FILE"
-
-#echo "✅ Done. Next run will fetch $next_month"
+rm $download_file
