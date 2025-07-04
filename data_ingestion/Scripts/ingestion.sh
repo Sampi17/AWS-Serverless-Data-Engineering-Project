@@ -34,6 +34,8 @@ downloaded_file="dataset/$file_name"
 
 unzip $downloaded_file -d data/
 
-git add data/$file_name 
+git add $MARKER_FILE
+echo "adding $MARKER_FILE to git staging area"
 git commit -m "downloaded dataset and triggering CI/CD to move the csv file to s3 bucket"
+echo "committed changes"
 git push -u origin master
